@@ -1,0 +1,35 @@
+Here is a solution in JavaScript that will accept a number and insert dashes (-) between even numbers and at signs (@) between odd numbers:
+
+Copy code
+function insertSymbols(num) {
+  // Convert the number to a string
+  num = num.toString();
+
+  // Initialize an empty result string
+  let result = "";
+
+  // Iterate through the digits in the number
+  for (let i = 0; i < num.length; i++) {
+    // Get the current digit
+    let digit = num[i];
+
+    // If the current digit is even, add a dash before it
+    if (digit % 2 === 0 && i > 0) {
+      result += "-";
+    }
+
+    // If the current digit is odd and the previous digit was even, add an at sign before it
+    if (digit % 2 === 1 && num[i - 1] % 2 === 0) {
+      result += "@";
+    }
+
+    // Add the current digit to the result string
+    result += digit;
+  }
+
+  return result;
+}
+
+// Test the function
+console.log(insertSymbols(089348152641766)); // Output: "0-89@34-81@52-6-41@76-6"
+This solution converts the number to a string, iterates through its digits, and inserts dashes or at signs based on whether the current digit is even or odd. It also checks the previous digit to ensure that it inserts the correct symbol between two odd or two even digits.

@@ -1,0 +1,51 @@
+Here is a solution in JavaScript that sorts the items of an array using a bubble sort algorithm, without using any array methods:
+
+Copy code
+function sortArray(array) {
+  // Get the length of the array
+  let n = array.length;
+
+  // Initialize variables to track the closest negative integer and highest positive integer
+  let closestNegative = null;
+  let highestPositive = null;
+
+  // Implement the bubble sort algorithm
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (array[j] > array[j + 1]) {
+        // Swap the elements if they are in the wrong order
+        let temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
+      }
+    }
+  }
+
+  // Find the closest negative integer and highest positive integer
+  for (let i = 0; i < n; i++) {
+    let num = array[i];
+    if (num < 0) {
+      if (closestNegative === null || Math.abs(num) < Math.abs(closestNegative)) {
+        closestNegative = num;
+      }
+    } else {
+      if (highestPositive === null || num > highestPositive) {
+        highestPositive = num;
+      }
+    }
+  }
+
+  return {
+    sortedArray: array,
+    closestNegative: closestNegative,
+    highestPositive: highestPositive
+  };
+}
+
+// Test the function
+let arrayContainer = [-9,1,7,-3,5,-4,11,8,0];
+let result = sortArray(arrayContainer);
+console.log(result.sortedArray); // Output: [ -9, -4, -3, 0, 1, 5, 7, 8, 11 ]
+console.log(result.closestNegative); // Output: -3
+console.log(result.highestPositive); // Output: 11
+This solution first sorts the array using a bubble sort algorithm, then iterates through the sorted array to find the closest negative integer and the highest positive integer. It returns an object containing the sorted array and the two integers.
